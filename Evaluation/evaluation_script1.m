@@ -35,10 +35,16 @@ normalized = zscore(shuffled_features);
 model = svmtrain(shuffled_class, normalized, '-c 100 -g 0.0002 -b 1');
 
 %Compute features for a test file and predict
-[file_feature_vector,classification_vector] = computeFeaturesForFile(audition_metadata, 4096, 2048, 37);
+[file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata, 4096, 2048, 40);
 normalized_file = zscore(file_feature_vector);
-[predict_label, accuracy, decision] = svmpredict(classification_vector, normalized_file, model);
+[predict_label, accuracy, decision] = svmpredict(classification_vector_file, normalized_file, model);
 
 %Calculate the mean accuracy
-
+[C,order] = confusionmat(classification_vector_file,predict_label);
+sum_speech = sum(C(1,:));
+sum_music = sum(C(2,:));
+speech_vector_accuracy = C(1,1)/sum_speech;
+music_vector_accuracy = C(2,2)/sum_music;
+file_accuracy = (speech_vector_accuracy+music_vector_accuracy)/2;
+disp(file_accuracy);
 
