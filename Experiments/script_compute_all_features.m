@@ -38,13 +38,13 @@ accuracy_final = 0;
 % end
 
 %Code for running  training and testing classification 
-[final_training_vector,final_training_classification_group] = computeFeaturesFromDataSet(audition_metadata, 4096, 2048, [31:40], 'train');
+[final_training_vector,final_training_classification_group] = computeFeaturesFromDataSet(audition_metadata, 4096, 2048, [1:10], 'train');
 %[final_testing_feature_vector,final_testing_classification_group] = computeFeaturesFromDataSet(audition_metadata, 4096, 2048, [1:30], 'test');
 
 final_training_normalized = zscore(final_training_vector);
 %This computation is being done to put the values between -1 and 1 which
 %the SVM classifier generally expects.
-final_training_normalized = final_training_normalized/2;
+%final_training_normalized = final_training_normalized/2;
 %final_testing_normalized = zscore(final_testing_feature_vector);
 %model = svmtrain(final_training_classification_group, final_training_normalized, '-c 1.8 -g 0.3 -b 1');
 %[predict_label, accuracy, decision] = svmpredict(final_testing_classification_group, final_testing_normalized, model);
