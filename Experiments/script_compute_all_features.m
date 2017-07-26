@@ -3,8 +3,9 @@
 
 %clear all; clc; close all;
 
-
-fba_relative_path = '../../../../Desktop/FBA/FBA';
+addpath('../svm_windows');
+addpath('../Features');
+fba_relative_path = '../../../../../Desktop/FBA/FBA';
 band_option = 'concert'; %'concert', 'symphonic'
 instrument_option = 'Alto Saxophone';
 segment_option = [];

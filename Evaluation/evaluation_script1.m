@@ -1,2 +1,2 @@
 clear all;close all;clc;
-addpath('svm_windows');
+addpath('../svm_windows');

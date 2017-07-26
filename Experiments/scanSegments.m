@@ -21,7 +21,7 @@ elseif ispc
 end
     % //initialization 
 %annPath = [root_path '..' slashtype '..' slashtype 'FBA' year_option];
-annPath = ['..' slashtype '..' slashtype '..' slashtype '..' slashtype 'Desktop' slashtype 'FBA' slashtype 'FBA' year_option slashtype 'FBA' year_option];
+annPath = ['..' slashtype '..' slashtype '..' slashtype '..' slashtype '..' slashtype 'Desktop' slashtype 'FBA' slashtype 'FBA' year_option slashtype 'FBA' year_option];
 %N = length(student_ids);
 %segments = cell(N, 1);
 N           = size(student_ids,1);

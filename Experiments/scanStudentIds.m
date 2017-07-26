@@ -41,7 +41,7 @@ end
 
 % path to excel file:
 %xls_path = ['..' slashtype '..' slashtype 'FBA' year_option];
-xls_path = ['..' slashtype '..' slashtype '..' slashtype '..' slashtype 'Desktop' slashtype 'FBA' slashtype 'FBA' year_option slashtype 'FBA' year_option];
+xls_path = ['..' slashtype '..' slashtype '..' slashtype '..' slashtype '..' slashtype 'Desktop' slashtype 'FBA' slashtype 'FBA' year_option slashtype 'FBA' year_option];
 
 
 switch band_option

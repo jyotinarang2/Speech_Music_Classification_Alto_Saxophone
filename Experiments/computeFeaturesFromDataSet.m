@@ -1,4 +1,5 @@
-%This function is used to compute the features 
+%This function is used to compute the features found using Feature
+%Selection algorithm.
 function [final_feature_vector,final_classification_group] = computeFeaturesFromDataSet(audition_metadata, iBlockLength, iHopLength, kFoldFileNumbers, datatype)
 final_feature_vector = [];
 final_classification_group = [];
