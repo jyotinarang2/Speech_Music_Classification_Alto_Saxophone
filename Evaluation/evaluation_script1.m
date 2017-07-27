@@ -6,8 +6,8 @@ addpath('../Experiments');
 load ../Saved_Models/model_31_40_removed.mat
 
 %Generate any 2000 numbers in the length of the speech and music elements
-rand_numbers_speech = randi([1 length(index_speech)],1,2000);
-rand_numbers_music = randi([1 length(index_music)],1,2000);
+rand_numbers_speech = randi([1 length(index_speech)],1,10000);
+rand_numbers_music = randi([1 length(index_music)],1,10000);
 
 %Get the indexes of random speech and music elements
 speech_elements = index_speech(rand_numbers_speech);
@@ -35,7 +35,7 @@ normalized = zscore(shuffled_features);
 model = svmtrain(shuffled_class, normalized, '-c 100 -g 0.0002 -b 1');
 
 %Compute features for a test file and predict
-[file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata, 4096, 2048, 40);
+[file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata, 4096, 2048, 31);
 normalized_file = zscore(file_feature_vector);
 [predict_label, accuracy, decision] = svmpredict(classification_vector_file, normalized_file, model);
 
