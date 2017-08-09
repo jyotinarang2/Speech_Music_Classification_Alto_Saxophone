@@ -1,3 +1,4 @@
+%Script to compute feature accuracy with random sampling of data points.
 clear all;close all;clc;
 
 addpath('../svm_windows');
