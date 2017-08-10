@@ -1,9 +1,14 @@
 %Script to compute feature accuracy with random sampling of data points.
+%Normalization method has been changed from zscore to zscore/2
+%Post-processing step of median filtering has been applied to improve the
+%accuracy of the classified file.
+
 clear all;close all;clc;
 
 addpath('../svm_windows');
 addpath('../Features');
 addpath('../Experiments');
+addpath('../Post-Processing');
 load ../Saved_Models/model_31_40_removed.mat
 
 %Generate any 2000 numbers in the length of the speech and music elements
@@ -33,11 +38,14 @@ shuffled_class = final_class(shuffle_index);
 
 %Train SVM with this small dataset
 normalized = zscore(shuffled_features);
+normalized = normalized/2;
+disp('Starting training of classifier');
 model = svmtrain(shuffled_class, normalized, '-c 10 -g 0.0001 -b 1');
 
 %Compute features for a test file and predict
-[file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata, 4096, 2048, 31);
+[file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata, 4096, 2048, 32);
 normalized_file = zscore(file_feature_vector);
+normalized_file = normalized_file/2;
 [predict_label, accuracy, decision] = svmpredict(classification_vector_file, normalized_file, model);
 
 %Calculate the mean accuracy
@@ -49,3 +57,12 @@ music_vector_accuracy = C(2,2)/sum_music;
 file_accuracy = (speech_vector_accuracy+music_vector_accuracy)/2;
 disp(file_accuracy);
 
+%Apply median filter on the output file and compute the accuracy again
+y = computeMedianFilter(predict_label,10); %A window size of 10 has been used 
+[C1,order1] = confusionmat(classification_vector_file,y);
+sum_speech = sum(C1(1,:));
+sum_music = sum(C1(2,:));
+speech_vector_accuracy = C1(1,1)/sum_speech;
+music_vector_accuracy = C1(2,2)/sum_music;
+file_accuracy = (speech_vector_accuracy+music_vector_accuracy)/2;
+disp(file_accuracy);

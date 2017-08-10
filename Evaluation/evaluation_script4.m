@@ -1,9 +1,12 @@
 %Script to compute feature accuracy with random sampling of data points.
+%Normalization method has been changed from zscore to zscore/2
+
 clear all;close all;clc;
 
 addpath('../svm_windows');
 addpath('../Features');
 addpath('../Experiments');
+addpath('../Post-Processing');
 load ../Saved_Models/model_31_40_removed.mat
 
 %Generate any 2000 numbers in the length of the speech and music elements
@@ -33,11 +36,13 @@ shuffled_class = final_class(shuffle_index);
 
 %Train SVM with this small dataset
 normalized = zscore(shuffled_features);
+normalized = normalized/2;
 model = svmtrain(shuffled_class, normalized, '-c 10 -g 0.0001 -b 1');
 
 %Compute features for a test file and predict
 [file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata, 4096, 2048, 31);
 normalized_file = zscore(file_feature_vector);
+normalized_file = normalized_file/2;
 [predict_label, accuracy, decision] = svmpredict(classification_vector_file, normalized_file, model);
 
 %Calculate the mean accuracy
