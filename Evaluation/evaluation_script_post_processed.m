@@ -1,7 +1,7 @@
 %Script to compute feature accuracy with random sampling of data points.
 %Normalization method has been changed from zscore to zscore/2
-%Post-processing step of median filtering has been applied to improve the
-%accuracy of the classified file.
+%Post processing of dilation and erosion has been applied to the files to
+%using a strel 
 
 clear all;close all;clc;
 
