@@ -1,17 +1,17 @@
 %Compute feature accuracy by training on the entire data points
 %This experiment is being performed with just zscore normalization
-clear all;close all;clc;
+%clear all;close all;clc;
 
 addpath('../svm_windows');
 addpath('../Features');
 addpath('../Experiments');
-load ../Saved_Models/model_31_40_removed.mat
+%load ../Saved_Models/model_31_40_removed.mat
 
 disp('SVM training started');
 model = svmtrain(final_training_classification_group, final_training_normalized, '-c 100 -g 0.0002 -b 1');
 disp('Training finished');
 %Compute features for a test file and predict
-[file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata, 4096, 2048, 31);
+[file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata, 4096, 2048, 81);
 normalized_file = zscore(file_feature_vector);
 [predict_label, accuracy, decision] = svmpredict(classification_vector_file, normalized_file, model);
 

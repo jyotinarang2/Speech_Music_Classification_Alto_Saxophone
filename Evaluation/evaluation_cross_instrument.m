@@ -11,7 +11,7 @@ load ../Saved_Models/model_31_40_removed_SVM_chg_nor.mat
 
 fba_relative_path = '../../../../../Desktop/FBA/FBA';
 band_option = 'concert'; %'concert', 'symphonic'
-instrument_option = 'Percussion';
+instrument_option = 'Bb Clarinet';
 segment_option = [];
 score_option = [];
 year_option = '2013';
@@ -28,7 +28,7 @@ audition_metadata1 = scanFBA(fba_relative_path, ...
 % disp('Training finished');
 %Compute features for a test file and predict
 
-[file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata1, 4096, 2048, 8);
+[file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata1, 4096, 2048, 1);
 normalized_file = zscore(file_feature_vector);
 normalized_file = normalized_file/2;
 [predict_label, accuracy, decision] = svmpredict(classification_vector_file, normalized_file, model);

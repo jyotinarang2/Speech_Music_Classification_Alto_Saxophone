@@ -10,7 +10,7 @@ addpath('../svm_windows');
 addpath('../Features');
 addpath('../Experiments');
 addpath('../Post-Processing');
-load ../Saved_Models/model_31_40_removed.mat
+load ../Saved_Models/svm_1_20_removed.mat
 
 %Generate any 2000 numbers in the length of the speech and music elements
 rand_numbers_speech = randi([1 length(index_speech)],1,10000);
