@@ -61,7 +61,12 @@ spectral_slope = spectral_slope';
     %spectral_decrease = computeFeatureSpectralDecrease(X, Fs);
     %spectral_decrease = spectral_decrease';
 %     [time_peak_envelope, t] = computeFeatureTimePeakEnvelope(stereo_to_mono, iBlockLength, iHopLength, Fs);
-
+if cellfun('isempty',audition_metadata.path_segments(file_number))
+   final_feature_vector = [];
+   classification_vector = []; 
+   disp('Empty segment');
+   return;
+end
 file_music_segments = char(audition_metadata.path_segments(file_number));
 classification_vector = [];
 classification_vector = rangeMusicValues(file_music_segments,rms_feature_vector, segment_start, iHopLength, Fs);

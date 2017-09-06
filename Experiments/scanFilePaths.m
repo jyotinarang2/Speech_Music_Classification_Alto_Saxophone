@@ -13,18 +13,27 @@ function [file_paths] = scanFilePaths(fba_relative_path, student_ids, year_optio
 %   'middleschoolscores/student_id/student_id.mp3'
 %   'symphonicbandscores/student_id/student_id.mp3'
 
-if ismac
-    % Code to run on Mac plaform
-    slashtype='/';
-elseif ispc
-    % Code to run on Windows platform
-    slashtype='\';
-end
+% if ismac
+%     Code to run on Mac plaform
+%     slashtype='/';
+% elseif ispc
+%     Code to run on Windows platform
+%     slashtype='\';
+% end
+slashtype = '/';
 
 if strcmp(year_option,'2013')
     folder_concert      = [fba_relative_path slashtype '2013-2014' slashtype 'concertbandscores'];
     folder_middle       = [fba_relative_path slashtype '2013-2014' slashtype 'middleschoolscores'];
     folder_symphonic    = [fba_relative_path slashtype '2013-2014' slashtype 'symphonicbandscores'];
+elseif strcmp(year_option,'2014')
+    folder_concert      = [fba_relative_path slashtype '2014-2015' slashtype 'concertband'];
+    folder_middle       = [fba_relative_path slashtype '2014-2015' slashtype 'middleschool'];
+    folder_symphonic    = [fba_relative_path slashtype '2014-2015' slashtype 'symphonicband'];
+elseif strcmp(year_option,'2015')
+    folder_concert      = [fba_relative_path slashtype '2015-2016' slashtype 'concertband'];
+    folder_middle       = [fba_relative_path slashtype '2015-2016' slashtype 'middleschool'];
+    folder_symphonic    = [fba_relative_path slashtype '2015-2016' slashtype 'symphonicband'];
 else
     folder_concert      = [fba_relative_path slashtype 'concertband'];
     folder_middle       = [fba_relative_path slashtype 'middleschool'];

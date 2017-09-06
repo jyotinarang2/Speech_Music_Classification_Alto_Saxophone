@@ -7,7 +7,7 @@ addpath('../svm_windows');
 addpath('../Features');
 fba_relative_path = '../../../../../Desktop/FBA/FBA';
 band_option = 'concert'; %'concert', 'symphonic'
-instrument_option = 'Alto Saxophone';
+instrument_option = 'Bb Clarinet';
 segment_option = [];
 score_option = [];
 year_option = '2013';
@@ -38,7 +38,7 @@ accuracy_final = 0;
 % end
 
 %Code for running  training and testing classification 
-[final_training_vector,final_training_classification_group] = computeFeaturesFromDataSet(audition_metadata, 4096, 2048, [1:10], 'train');
+[final_training_vector,final_training_classification_group] = computeFeaturesFromDataSet(audition_metadata, 4096, 2048, [], 'train');
 %[final_testing_feature_vector,final_testing_classification_group] = computeFeaturesFromDataSet(audition_metadata, 4096, 2048, [1:30], 'test');
 
 final_training_normalized = zscore(final_training_vector);

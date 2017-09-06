@@ -11,17 +11,17 @@
 
 function file_paths = scanSegments(segment_option, student_ids, year_option)
 root_path = deriveRootPath();
-
-if ismac
-    % Code to run on Mac plaform
-    slashtype='/';
-elseif ispc
-    % Code to run on Windows platform
-    slashtype='\';
-end
+slashtype ='/';
+% if ismac
+%     % Code to run on Mac plaform
+%     slashtype='/';
+% elseif ispc
+%     % Code to run on Windows platform
+%     slashtype='\';
+% end
     % //initialization 
 %annPath = [root_path '..' slashtype '..' slashtype 'FBA' year_option];
-annPath = ['..' slashtype '..' slashtype '..' slashtype '..' slashtype '..' slashtype 'Desktop' slashtype 'FBA' slashtype 'FBA' year_option slashtype 'FBA' year_option];
+annPath = ['..' slashtype '..' slashtype '..' slashtype '..' slashtype '..' slashtype 'Desktop' slashtype 'FBA' slashtype 'FBA2013'  slashtype 'FBA' year_option];
 %N = length(student_ids);
 %segments = cell(N, 1);
 N           = size(student_ids,1);
