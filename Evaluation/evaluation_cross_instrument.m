@@ -11,10 +11,10 @@ load ../Saved_Models/svm_Bb_clarinet_all_files.mat
 
 fba_relative_path = '../../../../../Desktop/FBA/FBA';
 band_option = 'concert'; %'concert', 'symphonic'
-instrument_option = 'Bb Clarinet';
+instrument_option = 'Percussion';
 segment_option = [];
 score_option = [];
-year_option = '2014';
+year_option = '2013';
 
 audition_metadata = scanFBA(fba_relative_path, ...
     band_option, ...
@@ -30,11 +30,19 @@ total = 0;
 %Compute features for a test file and predict
 file_location = {};
 file_accuracy_array = [];
+empty = 0;
 for file_number=1:length(audition_metadata.path_segments)
     file_location(file_number) = audition_metadata.path_segments(file_number);
+    file_feature_vector = [];
     [file_feature_vector,classification_vector_file] = computeFeaturesForFile(audition_metadata, 4096, 2048, file_number);
+    if(isempty(file_feature_vector))
+        disp('Corrupt file');
+        empty = empty+1;
+        continue;
+    end
     if(isempty(classification_vector_file))
         disp('Empty segment');
+        empty = empty+1;
         continue;
     end
     normalized_file = zscore(file_feature_vector);
@@ -68,5 +76,5 @@ for file_number=1:length(audition_metadata.path_segments)
     
 end
 disp('mean accuracy');
-disp(total/length(audition_metadata.path_segments));
+disp(total/(length(audition_metadata.path_segments)-empty));
 

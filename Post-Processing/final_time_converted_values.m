@@ -1,3 +1,4 @@
+%This script is used to compute the time segments of the input array
 addpath('../Experiments');
 input = computeArrayFromSequence(y);
 output = mergeArrayUsingDP(input,10);

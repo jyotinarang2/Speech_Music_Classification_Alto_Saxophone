@@ -8,6 +8,9 @@ try
    [y,Fs]=audioread(char(file_name));
 catch exception
    disp('corrupt file');
+   final_feature_vector = [];
+   classification_vector = [];
+   return;
 end
 %     iBlockLength = 4096;
 %     iHopLength = 2048;
