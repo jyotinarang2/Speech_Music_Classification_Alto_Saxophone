@@ -19,7 +19,7 @@ function predictFileSegments(sourcePath, destinationPath)
     [predict_label, ~, ~] = svmpredict(classification_vector_file, normalized_file, model);
     st = strel(ones(23,1));
     y = imclose(predict_label,st);
-    music_pieces = convert_values_to_time(y);
+    music_pieces = convertValuesToTime(y);
     %file_name = strcat(num2str(student_ids(i)),'.txt');
     writetable(struct2table(music_pieces),destinationPath);
 end
