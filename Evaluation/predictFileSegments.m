@@ -20,6 +20,12 @@ function predictFileSegments(sourcePath, destinationPath)
     st = strel(ones(23,1));
     y = imclose(predict_label,st);
     music_pieces = convertValuesToTime(y);
-    %file_name = strcat(num2str(student_ids(i)),'.txt');
-    writetable(struct2table(music_pieces),destinationPath);
+    %writetable(struct2table(music_pieces),strcat(destinationPath,'output.txt'));
+    fileID = fopen(strcat(destinationPath,'output.txt'),'w');
+    formatSpec = '%f\t%f\n';
+    fprintf(fileID,'// data format: start_time(sec)\tduration(sec)\n');
+    for j = 1:length(music_pieces)
+        fprintf(fileID, formatSpec, music_pieces(j).start, music_pieces(j).duration);
+    end
+    fclose(fileID);
 end
