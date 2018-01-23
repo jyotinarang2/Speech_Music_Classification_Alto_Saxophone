@@ -1,6 +1,6 @@
-function music_segments = convert_values_to_time(predict_label)
+function music_segments = convertValuesToTime(predict_label, segments)
 input = computeArrayFromSequence(predict_label);
-output = mergeArrayUsingDP(input,10);
+output = mergeArrayUsingDP(input,segments);
 time_sec = [];
 for i=1:length(output)
 time_sec(i) = (output(i).numberFrames*2048)/44100;
